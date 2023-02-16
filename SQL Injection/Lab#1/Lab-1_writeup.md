@@ -4,7 +4,8 @@
 
 
 ## About:
-This lab contains a [SQL injection](https://portswigger.net/web-security/sql-injection) vulnerability in the product category filter. When the user selects a category, the application carries out a SQL query like the following: 
+This lab contains a [SQL injection](https://portswigger.net/web-security/sql-injection) vulnerability in the product category filter.<br/> 
+When the user selects a category, the application carries out a SQL query like the following: 
 ```SQL
 SELECT * FROM products WHERE category = 'Gifts' AND released = 1
 ```
