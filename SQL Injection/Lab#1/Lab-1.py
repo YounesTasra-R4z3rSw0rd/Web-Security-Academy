@@ -11,7 +11,7 @@ import urllib.request
 from colorama import Fore, Style
 import requests
 
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)     # Omitting all warnings from urllib3 and get a clean output.
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)     # Omitting errors from urllib3 to get a clean output
 
 PROXIES = {
     "http": "127.0.0.1:8080",
