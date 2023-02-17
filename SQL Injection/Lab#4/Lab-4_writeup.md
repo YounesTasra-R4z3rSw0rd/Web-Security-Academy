@@ -42,7 +42,7 @@ SELECT * FROM products WHERE category = 'Gifts''
 > -> The ```second column``` contains string data.
 
 ### Automated:
-* Refer to https://github.com/YounesTasra-R4z3rSw0rd/Web-Security-Academy/blob/main/SQL%20Injection/Lab%233/Lab-4.py
+* Refer to https://github.com/YounesTasra-R4z3rSw0rd/Web-Security-Academy/blob/main/SQL%20Injection/Lab%234/Lab-4.py
 * Requirements:
 ```bash
 pip3 install -m requirements.txt
