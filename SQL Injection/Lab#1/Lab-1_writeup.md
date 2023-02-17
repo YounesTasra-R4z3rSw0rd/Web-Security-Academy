@@ -46,7 +46,7 @@ pip3 install -m requirements.txt
 $ python3 Lab-1.py --help
 usage: Lab-1.py [-h] -u URL [-n]
 
-Usage Example: python3 SQLi-Lab#1.py --url https://0a2100.web-security-academy.net/ --no-proxy
+Usage Example: python3 Lab-1.py --url https://0a2100.web-security-academy.net/ --no-proxy
 
 options:
   -h, --help         show this help message and exit
