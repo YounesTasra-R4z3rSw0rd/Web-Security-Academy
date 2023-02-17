@@ -12,7 +12,7 @@ import urllib.request
 from colorama import Fore, Style
 import requests
 
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)     # Omitting errors from urllib3 to get a clean output
 
 PROXIES = {
     "http": "127.0.0.1:8080",
@@ -46,7 +46,7 @@ def Get_CSFR_Token(session, url, uri, no_proxy) :
     else:
         response = session.get(url+uri, proxies=PROXIES, verify=False)
 
-    pattern = re.compile(r'name="csrf" value="(.*?)"')
+    pattern = re.compile(r'name="csrf" value="(.*?)"')      # Extracting the csrf token from the response using regex
     Token = pattern.search(response.text)
     return Token[1]
 
