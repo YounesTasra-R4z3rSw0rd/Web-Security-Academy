@@ -29,7 +29,7 @@ SELECT * FROM products WHERE category = 'Gifts''
 7. The number of columns is then ```3```
 
 ### Automated:
-* Refer to https://github.com/YounesTasra-R4z3rSw0rd/Web-Security-Academy/blob/main/SQL%20Injection/Lab%231/Lab-3.py
+* Refer to https://github.com/YounesTasra-R4z3rSw0rd/Web-Security-Academy/blob/main/SQL%20Injection/Lab%233/Lab-3.py
 * Requirements:
 ```bash
 pip3 install -m requirements.txt
