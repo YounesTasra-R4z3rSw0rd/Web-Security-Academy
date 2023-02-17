@@ -31,8 +31,20 @@ SELECT * FROM content WHERE username='administrator'
 SELECT * FROM content WHERE username='randomusername' OR 1=1--' AND password='p@$$w0rd'
 ```
 ### Automated: 
-* Refer to https://github.com/YounesTasra-R4z3rSw0rd/Web-Security-Academy/blob/main/SQL%20Injection/Lab%231/Lab-1.py
+* Refer to https://github.com/YounesTasra-R4z3rSw0rd/Web-Security-Academy/blob/main/SQL%20Injection/Lab%232/Lab-2.py
 * Requirements:
 ```bash
 pip3 install -m requirements.txt
+```
+* Help Menu: 
+```bash
+$ python3 Lab-2.py --help
+usage: Lab-2.py [-h] -u URL [-n]
+
+Usage Example: python3 Lab-2.py --url https://0a2100.web-security-academy.net/ --no-proxy
+
+options:
+  -h, --help         show this help message and exit
+  -u URL, --url URL  Enter the Lab URL
+  -n, --no-proxy     Do not use proxy                               
 ```
