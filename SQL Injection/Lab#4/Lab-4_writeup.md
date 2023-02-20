@@ -59,4 +59,5 @@ options:
   -u URL, --url URL  Enter the Lab URL
   -n, --no-proxy     Do not use proxy                               
 ```
+![Lab-4](https://user-images.githubusercontent.com/101610095/220033508-30d31320-3651-4b64-ac7b-fca9ccee1b39.gif)
 
