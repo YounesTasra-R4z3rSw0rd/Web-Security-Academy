@@ -180,7 +180,7 @@ sqlmap --proxy=http://127.0.0.1:8080 -u 'https://0aa8007d033d30a9c0f2d25500e700c
 ![sqlmap_4](https://user-images.githubusercontent.com/101610095/220315870-2a6abc2b-9898-4237-a738-b08f71fd3616.png)
 
 #### Python3:
-* Refer to https://github.com/YounesTasra-R4z3rSw0rd/Web-Security-Academy/blob/main/SQL%20Injection/Lab%234/Lab-5.py
+* Refer to https://github.com/YounesTasra-R4z3rSw0rd/Web-Security-Academy/blob/main/SQL%20Injection/Lab%235/Lab-5.py
 * Requirements:
 ```bash
 pip3 install -m requirements.txt
