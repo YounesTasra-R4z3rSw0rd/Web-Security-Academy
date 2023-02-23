@@ -395,7 +395,7 @@ if __name__ == "__main__":
 
             # Login as administrator:
             sleep(1)
-            log.info(Style.BRIGHT  + Fore.WHITE + "[" + Fore.BLUE + "*" + Fore.WHITE + "]" + Style.BRIGHT + Fore.WHITE + "Log in as administrator ... " )
+            log.info(Style.BRIGHT  + Fore.WHITE + "[" + Fore.BLUE + "*" + Fore.WHITE + "]" + Style.BRIGHT + Fore.WHITE + " Logging  in as administrator ... " )
 
             for i in range(len(usernames)) :
                 if(usernames[i] == 'administrator') :
