@@ -13,7 +13,7 @@ Retrieve the content of ```/etc/passwd``` file.
 * First of all, we need to find an XML data entry point where we can test for XXE vulnerability.
 * According to the lab description, the target Web Application has a check stock feature that parses XML input.
   ![XXE](https://user-images.githubusercontent.com/101610095/221443861-16357268-24f6-40be-9eba-cf94b6c412a8.png)
-* Let's visit the ```/product``` and intercept the POST request after clicking on the ```check stock``` button:
+* Let's visit the ```/product``` page and intercept the POST request after clicking on the ```check stock``` button:
   ![XXE2](https://user-images.githubusercontent.com/101610095/221443309-560773a8-e280-438b-b7e9-162d23f0d046.png)
 * As you can see here, after clicking on the check stock button, a client-side script issues a POST request to the server, and then the server respond with the following response:<br/> 
   ![XXE3](https://user-images.githubusercontent.com/101610095/221443796-aa626e12-d1df-4bc4-80a2-b2d2d82e0e89.png)
