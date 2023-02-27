@@ -72,7 +72,7 @@ def is_solved(url, session, no_proxy):
 if __name__ == "__main__":
     
     try: 
-        parser = argparse.ArgumentParser(description="Usage Example: python3 SQLi-Lab#6.py --url https://0a2100.web-security-academy.net/ --no-proxy")
+        parser = argparse.ArgumentParser(description="Usage Example: python3 Lab-1.py --url https://0a2100.web-security-academy.net/ --no-proxy")
         parser.add_argument("-u", "--url", help="Enter the Lab URL", required=True)
         parser.add_argument("-f", "--file", help="Enter the path to the file you want to retrieve", required=True)
         parser.add_argument("-n", "--no-proxy", help="Do not use proxy", default=False, action="store_true")
