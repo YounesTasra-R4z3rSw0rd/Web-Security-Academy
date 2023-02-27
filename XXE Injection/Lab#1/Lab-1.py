@@ -119,7 +119,7 @@ if __name__ == "__main__":
                 print('\n' + file)
 
                 if is_solved(url, session, args.no_proxy) :
-                    log.info(Fore.WHITE + "[" + Fore.GREEN + "+" + Fore.WHITE + "]" + Style.BRIGHT + Fore.CYAN + args.file + Fore.WHITE + " file retrieved successfully :)")
+                    log.info(Fore.WHITE + "[" + Fore.GREEN + "+" + Fore.WHITE + "] " + Style.BRIGHT + Fore.CYAN + args.file + Fore.WHITE + " file retrieved successfully :)")
                     print()
                     log.info(Fore.WHITE + "[" + Fore.GREEN + "+" + Fore.WHITE + "]" + Style.BRIGHT + Fore.WHITE + " The Lab should now be solved. Congrats !")
                     print("\n")
