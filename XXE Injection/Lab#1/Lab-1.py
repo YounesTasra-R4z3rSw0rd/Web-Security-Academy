@@ -131,7 +131,7 @@ if __name__ == "__main__":
 
         else:
             if is_url_reachable(url):
-                log.info(Fore.WHITE + "[" + Fore.BLUE + "*" + Fore.WHITE + "]" + " Retrieving the content of " + args.file + " file ...")
+                log.info(Fore.WHITE + "[" + Fore.GREEN + "+" + Fore.WHITE + "]" + " Retrieving the content of " + Fore.CYAN + args.file + Fore.WHITE + " file ...")
                 sleep(1)
                 file = retrieve_content(url, uri, payload, session, args.no_proxy)
                 print('\n' + file)
