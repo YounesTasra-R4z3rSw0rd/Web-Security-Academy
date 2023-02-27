@@ -84,4 +84,22 @@ Retrieve the content of ```/etc/passwd``` file.
 * It looks like the second data ```storeId``` node is not vulnerable to XXE injection. 
 
 ### Automated:
+* Refer to https://github.com/YounesTasra-R4z3rSw0rd/Web-Security-Academy/blob/main/SQL%20Injection/Lab%235/Lab-5.py
+* Requirements:
+```bash
+pip3 install -m requirements.txt
+```
+* Help Menu: 
+```bash
+usage: Lab-1.py [-h] -u URL -f FILE [-n] [-v]
 
+Usage Example: python3 Lab-1.py --url https://0a2100.web-security-academy.net/ --no-proxy
+
+options:
+  -h, --help            show this help message and exit
+  -u URL, --url URL     Enter the Lab URL
+  -f FILE, --file FILE  Enter the path to the file you want to retrieve
+  -n, --no-proxy        Do not use proxy
+  -v, --verbose         Increase the verbosity level                             
+```
+![Lab-11](https://user-images.githubusercontent.com/101610095/221608991-703bbc38-dd50-4cb0-910c-acaedce84d64.gif)
