@@ -61,7 +61,7 @@ Make the XML parser issue a ```DNS lookup``` and ```HTTP requests``` to ```Burp 
 
 * And with this, we triggered an out-of-band interaction with the target server, thus the target Web App is vulnerable to ```Blind XXE```
 ### Automated:
-* Refer to https://github.com/YounesTasra-R4z3rSw0rd/Web-Security-Academy/blob/main/XXE%20Injection/Lab%232/Lab-2.py
+* Refer to https://github.com/YounesTasra-R4z3rSw0rd/Web-Security-Academy/blob/main/XXE%20Injection/Lab%233/Lab-3.py
 * Requirements:
 ```bash
 pip3 install -m requirements.txt
