@@ -84,7 +84,7 @@ Retrieve the content of ```/etc/passwd``` file.
 * It looks like the second data ```storeId``` node is not vulnerable to XXE injection. 
 
 ### Automated:
-* Refer to https://github.com/YounesTasra-R4z3rSw0rd/Web-Security-Academy/blob/main/SQL%20Injection/Lab%235/Lab-5.py
+* Refer to https://github.com/YounesTasra-R4z3rSw0rd/Web-Security-Academy/blob/main/XXE%20Injection/Lab%231/Lab-1.py
 * Requirements:
 ```bash
 pip3 install -m requirements.txt
