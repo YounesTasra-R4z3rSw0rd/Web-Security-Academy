@@ -101,7 +101,6 @@ if __name__ == "__main__":
 {'-'*100}
         """
         print(banner)
-        sleep(1)
         if (args.verbose) :
 
             log.info(Fore.WHITE + "[" + Fore.BLUE + "*" + Fore.WHITE + "]" + " Target URL: " + url)
