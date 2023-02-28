@@ -93,15 +93,13 @@ pip3 install -m requirements.txt
 ```
 * Help Menu: 
 ```bash
-usage: Lab-1.py [-h] -u URL -f FILE [-n] [-v]
+usage: Lab-2.py [-h] -u URL -f FILE [-n] [-v]
 
-Usage Example: python3 Lab-1.py --url https://0a2100.web-security-academy.net/ --no-proxy
+Usage Example: python3 Lab-2.py --url https://0a2100.web-security-academy.net/ --no-proxy
 
 options:
   -h, --help            show this help message and exit
   -u URL, --url URL     Enter the Lab URL
-  -f FILE, --file FILE  Enter the path to the file you want to retrieve
-  -n, --no-proxy        Do not use proxy
-  -v, --verbose         Increase the verbosity level                             
+  -n, --no-proxy        Do not use proxy                            
 ```
 ![Lab2](https://user-images.githubusercontent.com/101610095/221735620-baed7f5a-caa2-4573-ad59-553c6f87c503.gif)
