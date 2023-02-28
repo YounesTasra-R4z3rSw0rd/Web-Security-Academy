@@ -29,9 +29,8 @@ logging.basicConfig(
 )
 
 def normalize_url(url):
-    if not url.endswith("/"): 
-        url = url + "/"
-    return url
+    parsed_url = urllib.parse.urlparse(url)
+    return f"{parsed_url.scheme}://{parsed_url.netloc}/"
 
 def is_url_reachable(url):
     try:
