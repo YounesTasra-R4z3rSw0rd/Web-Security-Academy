@@ -104,3 +104,4 @@ options:
   -n, --no-proxy        Do not use proxy
   -v, --verbose         Increase the verbosity level                             
 ```
+![Lab2](https://user-images.githubusercontent.com/101610095/221735620-baed7f5a-caa2-4573-ad59-553c6f87c503.gif)
