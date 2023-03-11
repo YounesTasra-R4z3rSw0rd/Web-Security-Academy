@@ -39,7 +39,7 @@ SELECT * FROM products WHERE category = 'Gifts''
 2. And then, inject the vulnerable parameter with ```'+UNION+SELECT+NULL,'a'--``` <br/>
       => If an ```Internal Server Error``` is returned, then the second column does not contain string type data.
 
-> 📍 ***In this Lab, the second column contain string data.*** 
+> 📍 ***In this Lab, the second column contains string data.*** 
 
 #### Retrieving data:
 * Since we know that there is a table called ```users``` that has two columns ```username``` and ```password``` and that we only have one column that return string data which we can control to fetch entries for table ```users```, we can the ```CONCAT``` clause <br/>
@@ -96,7 +96,7 @@ sqlmap --proxy=http://127.0.0.1:8080 -u 'https://0aa8007d033d30a9c0f2d25500e700c
 ![2023-02-24 07_58_23-HACKING_MACHINE - VMware Workstation 16 Player (Non-commercial use only)](https://user-images.githubusercontent.com/101610095/221113993-b9113a42-353a-4d27-88a3-377850614303.png)
 
 #### Python3:
-* Refer to https://github.com/YounesTasra-R4z3rSw0rd/Web-Security-Academy/blob/main/SQL%20Injection/Lab%235/Lab-5.py
+* Refer to https://github.com/YounesTasra-R4z3rSw0rd/Web-Security-Academy/blob/main/SQL%20Injection/Lab%236/Lab-6.py
 * Requirements:
 ```bash
 pip3 install -m requirements.txt
