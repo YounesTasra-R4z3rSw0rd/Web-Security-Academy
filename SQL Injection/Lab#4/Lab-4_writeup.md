@@ -31,7 +31,7 @@ SELECT * FROM products WHERE category = 'Gifts''
 ```SELECT * FROM products WHERE category = 'Gifts'```
 > -> The number of columns is then ```3```
 
-#### Finding a columns containing text:
+#### Finding columns containing text:
 1. Copy the string provided in the Lab:
 ![String Data](https://raw.githubusercontent.com/YounesTasra-R4z3rSw0rd/Web-Security-Academy/main/SQL%20Injection/Lab%234/2023-02-17%2018_14_48-SQL%20injection%20UNION%20attack%2C%20finding%20a%20column%20containing%20text%20%E2%80%94%20Mozilla%20Firefox.png)
 > In this case, the string data is: ```VnoDqj```
